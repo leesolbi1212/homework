@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나의 할 일</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      input[type="text"] {
+        width: 60%;
+        padding: 8px;
+        margin-right: 10px;
+      }
+      button {
+        padding: 8px 12px;
+        margin-left: 4px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      input.edit-input {
+        flex: 1;
+        padding: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>나의 할 일</h1>
+    <input type="text" id="todoInput" placeholder="할 일 입력" />
+    <button onclick="addTodo()">추가</button>
+    <h2>할 일 목록</h2>
+    <ul id="todoList"></ul>
+
+    <script>
+      let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+      function saveTodos() {
+        localStorage.setItem("todos", JSON.stringify(todos));
+      }
+
+      function renderTodos() {
+        const list = document.getElementById("todoList");
+        list.innerHTML = "";
+
+        todos.forEach((todo, index) => {
+          const li = document.createElement("li");
+
+          if (todo.editing) {
+            const input = document.createElement("input");
+            input.type = "text";
+            input.value = todo.text;
+            input.className = "edit-input";
+            input.oninput = (e) => (todos[index].text = e.target.value);
+
+            const saveBtn = document.createElement("button");
+            saveBtn.textContent = "저장";
+            saveBtn.onclick = () => {
+              todos[index].editing = false;
+              saveTodos();
+              renderTodos();
+            };
+
+            li.appendChild(input);
+            li.appendChild(saveBtn);
+          } else {
+            const span = document.createElement("span");
+            span.textContent = todo.text;
+
+            const editBtn = document.createElement("button");
+            editBtn.textContent = "수정";
+            editBtn.onclick = () => {
+              todos[index].editing = true;
+              renderTodos();
+            };
+
+            const delBtn = document.createElement("button");
+            delBtn.textContent = "삭제";
+            delBtn.onclick = () => {
+              todos.splice(index, 1);
+              saveTodos();
+              renderTodos();
+            };
+
+            li.appendChild(span);
+            li.appendChild(editBtn);
+            li.appendChild(delBtn);
+          }
+
+          list.appendChild(li);
+        });
+      }
+
+      function addTodo() {
+        const input = document.getElementById("todoInput");
+        const text = input.value.trim();
+        if (text) {
+          todos.push({ text, editing: false });
+          saveTodos();
+          renderTodos();
+          input.value = "";
+        }
+      }
+
+      renderTodos();
+    </script>
+  </body>
+</html>

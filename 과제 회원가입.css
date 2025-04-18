@@ -1,0 +1,286 @@
+@font-face {
+  font-family: "GowunBatang-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+input {
+  background-color: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+:root {
+  --primary-color: #8b5cf6;
+  --primary-dark: #7c3aed;
+  --bg-dark: #1f2937;
+  --bg-darker: #111827;
+  --text-light: #f3f4f6;
+  --text-gray: #9ca3af;
+}
+
+body {
+  background-color: var(--bg-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: var(--text-light);
+  padding: 20px;
+}
+
+main {
+  background-color: var(--bg-darker);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 600px;
+  transition: transform 0.3s ease;
+  animation: fadeIn 0.5s ease-out;
+}
+
+main:hover {
+  transform: translateY(-5px);
+}
+
+h2 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+p {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  color: var(--text-gray);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 12px;
+  background-color: var(--bg-dark);
+  border: 2px solid var(--bg-dark);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.ssnn {
+  width: 100px;
+  text-align: center;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* 라디오 버튼 스타일링 */
+.gender-group {
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.gender-group span {
+  color: var(--text-gray);
+  font-size: 14px;
+  min-width: 80px;
+}
+
+.gender-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--text-gray);
+  border-radius: 50%;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+input[type="radio"]:checked {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  box-shadow: inset 0 0 0 4px var(--bg-darker);
+}
+
+/* 주민등록번호 그룹 스타일링 */
+.ssn-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.ssn-group input {
+  width: 120px; /* 입력 필드 너비 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+/* 우편번호 그룹 스타일링 */
+.address-group {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.address-group input[name="zipcode"] {
+  width: 100px;
+}
+
+/* 에러 메시지 스타일링 */
+.error {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  main {
+    padding: 20px;
+  }
+
+  .ssn-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ssn-group input {
+    width: 100%;
+  }
+
+  .address-group {
+    flex-direction: column;
+  }
+
+  .address-group input[name="zipcode"] {
+    width: 100%;
+  }
+
+  button {
+    padding: 8px 16px; /* 버튼 내부 여백 줄이기 */
+    font-size: 12px; /* 글자 크기 줄이기 */
+    width: auto; /* 필요에 따라 너비를 조정 */
+  }
+}
+
+/* 입력 필드 포커스 시 라벨 색상 변경 */
+input:focus + label,
+input:focus ~ label {
+  color: var(--primary-color);
+}
+
+/* 호버 효과 */
+input:hover,
+button:hover {
+  transform: translateY(-2px);
+}
+
+/* 애니메이션 효과 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 로딩 상태 표시 */
+button.loading {
+  position: relative;
+  color: transparent;
+}
+
+button.loading::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

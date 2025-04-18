@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <link rel="stylesheet" href="./과제 회원가입.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./과제 회원가입.js"></script>
+  </head>
+  <body>
+    <main>
+      <h2>회원가입</h2>
+      <form
+        action="./과제 회원가입.js"
+        name="regform"
+        id="regform"
+        method="post"
+        onsubmit="return sendit()"
+      >
+        <p>
+          <label for="userid">아이디</label>
+          <input type="text" name="userid" id="userid" maxlength="20" />
+        </p>
+
+        <p>
+          <label for="userpw">비밀번호</label>
+          <input type="password" name="userpw" id="userpw" maxlength="20" />
+        </p>
+
+        <p>
+          <label for="userpw_re">비밀번호 확인</label>
+          <input
+            type="password"
+            name="userpw_re"
+            id="userpw_re"
+            maxlength="10"
+          />
+        </p>
+
+        <p>
+          <label for="name">이름</label>
+          <input type="text" name="name" id="name" maxlength="10" />
+        </p>
+
+        <p>
+          <label for="hp">휴대폰 번호</label>
+          <input type="text" name="hp" id="hp" maxlength="20" />
+        </p>
+
+        <p>
+          <label for="email">이메일</label>
+          <input type="text" name="email" id="email" maxlength="50" />
+        </p>
+
+        <p class="gender-group">
+          <span>성별</span>
+          <label>
+            <input type="radio" name="gender" value="남" id="male" checked />
+            남자
+          </label>
+          <label>
+            <input type="radio" name="gender" value="여" id="female" />
+            여자
+          </label>
+        </p>
+
+        <p class="ssn-group">
+          <label for="ssn1">주민등록번호</label>
+          <input type="text" name="ssn1" id="ssn1" maxlength="6" class="ssnn" />
+          <span>-</span>
+          <input type="text" name="ssn2" id="ssn2" maxlength="7" class="ssnn" />
+          <button type="button" onclick="validateSSN()">
+            주민등록번호 검증
+          </button>
+        </p>
+
+        <p class="address-group">
+          <label for="zipcode">우편번호</label>
+          <input type="text" name="zipcode" maxlength="5" id="zipcode" />
+          <button type="button">우편번호 찾기</button>
+        </p>
+
+        <p>
+          <label for="address">주소</label>
+          <input type="text" name="address" id="address" />
+        </p>
+
+        <p>
+          <label for="address2">상세주소</label>
+          <input type="text" name="address2" id="address2" />
+        </p>
+
+        <p>
+          <label for="address3">참고항목</label>
+          <input type="text" name="address3" id="address3" />
+        </p>
+
+        <p>
+          <button type="submit">가입완료</button>
+        </p>
+      </form>
+    </main>
+  </body>
+</html>
