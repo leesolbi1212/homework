@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>최저 전세대출 금리 조회</title>
+    <style>
+      body {
+        background-color: #121212;
+        color: #e0f7fa;
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 2rem;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .form-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+      }
+
+      label {
+        margin-bottom: 0.3rem;
+        font-weight: bold;
+      }
+
+      select,
+      button {
+        padding: 0.5rem 1rem;
+        background: #1de9b6;
+        border: none;
+        border-radius: 8px;
+        color: #000;
+        font-weight: bold;
+        transition: transform 0.2s, background 0.3s;
+      }
+
+      select:hover,
+      button:hover {
+        background: #00bfa5;
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+
+      #resultArea {
+        max-width: 600px;
+        margin: 2rem auto;
+        background: #263238;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+      }
+
+      .highlight {
+        color: #1de9b6;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>최저 전세대출 금리 조회</h1>
+    <div class="form-wrapper">
+      <div class="input-group">
+        <label for="cbGrd">CB 등급</label>
+        <select id="cbGrd">
+          <option value="1">CB 1등급</option>
+          <option value="2">CB 2등급</option>
+          <option value="3">CB 3등급</option>
+          <option value="4">CB 4등급</option>
+          <option value="5">CB 5등급</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="jobCd">직업</label>
+        <select id="jobCd">
+          <option value="01">직장인</option>
+          <option value="02">자영업자</option>
+          <option value="03">기타</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="houseTycd">주택유형</label>
+        <select id="houseTycd">
+          <option value="01">다세대</option>
+          <option value="02">다가구</option>
+          <option value="03">단독주택</option>
+          <option value="05">연립주택</option>
+          <option value="06">아파트</option>
+          <option value="10">오피스텔</option>
+          <option value="99">기타</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="age">연령대</label>
+        <select id="age">
+          <option value="1">10대</option>
+          <option value="2">20대</option>
+          <option value="3">30대</option>
+          <option value="4">40대</option>
+          <option value="5">50대</option>
+          <option value="6">60대</option>
+          <option value="7">70대</option>
+          <option value="8">80대</option>
+          <option value="9">90대 이상</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="income">연소득</label>
+        <select id="income">
+          <option value="0">무소득</option>
+          <option value="1">1000만원 이하</option>
+          <option value="2">2000만원 이하</option>
+          <option value="3">3000만원 이하</option>
+          <option value="4">4000만원 이하</option>
+          <option value="5">5000만원 이하</option>
+          <option value="6">6000만원 이하</option>
+          <option value="7">7000만원 이하</option>
+          <option value="8">8000만원 이하</option>
+          <option value="9">9000만원 이하</option>
+          <option value="10">1억원 이하</option>
+          <option value="11">1억원 초과</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="debt">부채</label>
+        <select id="debt">
+          <option value="0">없음</option>
+          <option value="1">1000만원 이하</option>
+          <option value="2">2000만원 이하</option>
+          <option value="3">3000만원 이하</option>
+          <option value="4">4000만원 이하</option>
+          <option value="5">5000만원 이하</option>
+          <option value="6">6000만원 이하</option>
+          <option value="7">7000만원 이하</option>
+          <option value="8">8000만원 이하</option>
+          <option value="9">9000만원 이하</option>
+          <option value="10">1억원 이하</option>
+          <option value="11">1억원 초과</option>
+        </select>
+      </div>
+      <button onclick="fetchRate()">조회하기</button>
+    </div>
+
+    <div id="resultArea">결과가 이곳에 표시됩니다.</div>
+
+    <script>
+      async function fetchRate() {
+        const params = {
+          serviceKey:
+            "Fd9vStrV5WKcvb5kTCXeBBw1zyOOxNrOysX80lQ02PLaIWqI7PFfY7PlcJopX%2F3kd5FYkiHYt6QYbhItGuhIhQ%3D%3D",
+          loanYm: "202403",
+          cbGrd: document.getElementById("cbGrd").value,
+          jobCd: document.getElementById("jobCd").value,
+          houseTycd: document.getElementById("houseTycd").value,
+          age: document.getElementById("age").value,
+          income: document.getElementById("income").value,
+          debt: document.getElementById("debt").value,
+          dataType: "JSON",
+          numOfRows: 100,
+          pageNo: 1,
+        };
+
+        const query = new URLSearchParams(params).toString();
+        const url = `https://apis.data.go.kr/B551408/rent-loan-rate-multi-dimensional-info/dimensional-list?${query}`;
+
+        try {
+          const res = await fetch(url);
+          const xmlText = await res.text();
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(xmlText, "application/xml");
+
+          const resultCode = xml.querySelector("resultCode")?.textContent;
+          if (resultCode !== "00") {
+            document.getElementById("resultArea").innerHTML =
+              "API 호출 실패 (코드 " + resultCode + ")";
+            return;
+          }
+
+          const items = xml.querySelectorAll("item");
+
+          if (items.length === 0) {
+            document.getElementById("resultArea").innerHTML =
+              "조건에 맞는 데이터가 없습니다.";
+            return;
+          }
+
+          let best = null;
+          items.forEach((item) => {
+            const minLoanRat = parseFloat(
+              item.querySelector("minLoanRat").textContent
+            );
+            if (
+              !best ||
+              minLoanRat <
+                parseFloat(best.querySelector("minLoanRat").textContent)
+            ) {
+              best = item;
+            }
+          });
+
+          if (best) {
+            document.getElementById("resultArea").innerHTML = `
+              <p><span class="highlight">최저금리: ${
+                best.querySelector("minLoanRat").textContent
+              }%</span></p>
+              <p>은행명: ${best.querySelector("bankNm").textContent}</p>
+              <p>평균 금리: ${best.querySelector("avgLoanRat").textContent}%</p>
+              <p>최대 금리: ${best.querySelector("maxLoanRat").textContent}%</p>
+              <p>대출건수: ${best.querySelector("cnt").textContent}건</p>
+              <p>대출금액: ${Number(
+                best.querySelector("loanAmt").textContent
+              ).toLocaleString()}원</p>
+            `;
+          }
+        } catch (e) {
+          document.getElementById("resultArea").innerHTML =
+            "데이터 조회 중 오류가 발생했습니다.";
+          console.error(e);
+        }
+      }
+    </script>
+  </body>
+</html>
