@@ -336,7 +336,7 @@
             pageNo: "1",
           });
 
-          const url = `http://apis.data.go.kr/B551408/rent-loan-rate-info/rate-list?serviceKey=${serviceKey}&numOfRows=10&pageNo=1&dataType=xml`;
+          const url = `https://apis.data.go.kr/B551408/rent-loan-rate-info/rate-list?serviceKey=${serviceKey}&numOfRows=10&pageNo=1&dataType=xml`;
           console.log("요청 URL:", url);
 
           const response = await fetch(url);
