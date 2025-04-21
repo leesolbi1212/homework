@@ -1,0 +1,14 @@
+{
+  "name": "rent-loan-rate-api",
+  "version": "1.0.0",
+  "description": "전세대출 금리 조회 API 서버",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.6.2"
+  }
+} 
