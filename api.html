@@ -3,21 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏦</text></svg>">
-    <title>전세대출 금리 조회</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏦</text></svg>"
+    />
+    <title>💸전세대출 금리 조회</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap");
 
       :root {
-        --primary-color: #4CAF50;
-        --secondary-color: #2196F3;
+        --primary-color: #4caf50;
+        --secondary-color: #2196f3;
         --background-color: #121212;
-        --card-color: #1E1E1E;
-        --text-color: #E0E0E0;
-        --error-color: #CF6679;
-        --success-color: #4CAF50;
+        --card-color: #1e1e1e;
+        --text-color: #e0e0e0;
+        --error-color: #cf6679;
+        --success-color: #4caf50;
         --border-color: #333333;
-        --hover-color: #2A2A2A;
+        --hover-color: #2a2a2a;
       }
 
       * {
@@ -27,7 +30,7 @@
       }
 
       body {
-        font-family: 'Noto Sans KR', sans-serif;
+        font-family: "Noto Sans KR", sans-serif;
         background-color: var(--background-color);
         color: var(--text-color);
         line-height: 1.6;
@@ -40,7 +43,7 @@
         background-color: var(--card-color);
         padding: 30px;
         border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       }
 
       h1 {
@@ -110,7 +113,7 @@
         border-radius: 12px;
         display: none;
         border: 1px solid var(--border-color);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       }
 
       .result h2 {
@@ -150,7 +153,7 @@
       }
 
       .rate-value {
-        color: #4CAF50;
+        color: #4caf50;
         font-size: 1.2em;
       }
 
@@ -235,7 +238,8 @@
           font-size: 1.8em;
         }
 
-        select, button {
+        select,
+        button {
           padding: 10px;
         }
       }
@@ -244,7 +248,7 @@
   <body>
     <div class="container">
       <h1>전세대출 금리 조회</h1>
-      
+
       <div class="form-group">
         <label for="cbGrd">CB 등급</label>
         <select id="cbGrd">
@@ -309,63 +313,67 @@
 
     <script>
       async function fetchRate() {
-        const result = document.getElementById('result');
-        const error = document.getElementById('error');
-        const rateList = document.querySelector('.rate-list');
-        
-        result.style.display = 'none';
-        error.style.display = 'none';
-        rateList.innerHTML = '';
-        
+        const result = document.getElementById("result");
+        const error = document.getElementById("error");
+        const rateList = document.querySelector(".rate-list");
+
+        result.style.display = "none";
+        error.style.display = "none";
+        rateList.innerHTML = "";
+
         try {
-          const serviceKey = encodeURIComponent('Fd9vStrV5WKcvb5kTCXeBBw1zyOOxNrOysX80lQ02PLaIWqI7PFfY7PlcJopX/3kd5FYkiHYt6QYbhItGuhIhQ==');
+          const serviceKey = encodeURIComponent(
+            "Fd9vStrV5WKcvb5kTCXeBBw1zyOOxNrOysX80lQ02PLaIWqI7PFfY7PlcJopX/3kd5FYkiHYt6QYbhItGuhIhQ=="
+          );
           const params = new URLSearchParams({
             serviceKey: serviceKey,
-            cbGrd: document.getElementById('cbGrd').value,
-            jobCd: document.getElementById('jobCd').value,
-            houseTycd: document.getElementById('houseTycd').value,
-            age: document.getElementById('age').value,
-            dataType: 'XML',
-            numOfRows: '100',
-            pageNo: '1'
+            cbGrd: document.getElementById("cbGrd").value,
+            jobCd: document.getElementById("jobCd").value,
+            houseTycd: document.getElementById("houseTycd").value,
+            age: document.getElementById("age").value,
+            dataType: "XML",
+            numOfRows: "100",
+            pageNo: "1",
           });
 
           const url = `http://apis.data.go.kr/B551408/rent-loan-rate-info/rate-list?serviceKey=${serviceKey}&numOfRows=10&pageNo=1&dataType=xml`;
-          console.log('요청 URL:', url);
-          
+          console.log("요청 URL:", url);
+
           const response = await fetch(url);
           const text = await response.text();
-          console.log('응답 데이터:', text);
-          
+          console.log("응답 데이터:", text);
+
           const parser = new DOMParser();
-          const xmlDoc = parser.parseFromString(text, 'text/xml');
-          
-          const items = xmlDoc.querySelectorAll('item');
-          console.log('파싱된 아이템 수:', items.length);
-          
+          const xmlDoc = parser.parseFromString(text, "text/xml");
+
+          const items = xmlDoc.querySelectorAll("item");
+          console.log("파싱된 아이템 수:", items.length);
+
           if (items.length === 0) {
-            throw new Error('데이터가 없습니다.');
+            throw new Error("데이터가 없습니다.");
           }
 
           // 은행 데이터를 배열로 변환
-          const banks = Array.from(items).map(item => ({
-            name: item.querySelector('organId')?.textContent || '-',
-            interest: parseFloat(item.querySelector('interest4_1')?.textContent || '0')
+          const banks = Array.from(items).map((item) => ({
+            name: item.querySelector("organId")?.textContent || "-",
+            interest: parseFloat(
+              item.querySelector("interest4_1")?.textContent || "0"
+            ),
           }));
 
           // 금리가 0보다 큰 은행만 필터링하고 금리순으로 정렬
           const validBanks = banks
-            .filter(bank => bank.interest > 0)
+            .filter((bank) => bank.interest > 0)
             .sort((a, b) => a.interest - b.interest);
 
           if (validBanks.length === 0) {
-            throw new Error('현재 전세대출 상품을 제공하는 은행이 없습니다.');
+            throw new Error("현재 전세대출 상품을 제공하는 은행이 없습니다.");
           }
 
           // 정렬된 은행 목록을 화면에 표시
-          validBanks.forEach(bank => {
-            const bankItem = document.createElement('div');
-            bankItem.className = 'bank-item';
+          validBanks.forEach((bank) => {
+            const bankItem = document.createElement("div");
+            bankItem.className = "bank-item";
             bankItem.innerHTML = `
               <span class="bank-name">${bank.name}</span>
               <span class="bank-rate">${bank.interest}%</span>
@@ -373,11 +381,13 @@
             rateList.appendChild(bankItem);
           });
 
-          result.style.display = 'block';
+          result.style.display = "block";
         } catch (error) {
-          console.error('API 호출 오류:', error);
-          document.getElementById('error').textContent = `오류 발생: ${error.message}`;
-          document.getElementById('error').style.display = 'block';
+          console.error("API 호출 오류:", error);
+          document.getElementById(
+            "error"
+          ).textContent = `오류 발생: ${error.message}`;
+          document.getElementById("error").style.display = "block";
         }
       }
     </script>
