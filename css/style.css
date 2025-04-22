@@ -502,10 +502,9 @@ ul {
 
 .career__date {
   position: absolute;
-  top: 20px;
+  top: -15px;
   left: 50%;
-
-  transform: translateX(-50%);
+  transform: translateX(-40%);
   background-color: var(--color-blue);
   color: var(--color-white);
   padding: 0.3rem 0.8rem;
