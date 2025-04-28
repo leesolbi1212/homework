@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스크롤 배경 투명 효과</title>
+    <style>
+      /* 배경 */
+      #background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #0064ff; /* 원하는 배경색 */
+        z-index: -1;
+        transition: opacity 0.3s ease;
+      }
+
+      /* 내용 */
+      body {
+        margin: 0;
+        font-family: "Pretendard", sans-serif;
+        color: #fff;
+        text-align: center;
+      }
+
+      section {
+        height: 200vh; /* 스크롤 내릴 수 있게 높이 설정 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="background"></div>
+
+    <section>
+      <h1>스크롤을 내려보세요 👇</h1>
+    </section>
+
+    <script>
+      const background = document.getElementById("background");
+
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY;
+        const maxScroll = 300; // 몇 픽셀에서 완전 투명해질지
+        const opacity = Math.max(1 - scrollY / maxScroll, 0);
+        background.style.opacity = opacity;
+
+        console.log(`현재 스크롤 위치: ${scrollY}px`);
+      });
+    </script>
+  </body>
+</html>

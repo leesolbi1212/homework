@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>포트폴리오 인트로</title>
+    <style>
+      body {
+        height: 300vh;
+        margin: 0;
+        background: #121212;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      .main-title {
+        font-size: 3rem;
+        display: flex;
+        gap: 1rem;
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        transition: opacity 0.5s ease;
+      }
+
+      .left,
+      .right {
+        opacity: 0;
+        transition: all 1s ease;
+      }
+
+      .left {
+        transform: translateX(-200%);
+      }
+
+      .right {
+        transform: translateX(200%);
+      }
+
+      .active .left {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .active .right {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="main-title" id="flyTitle">
+      <span class="left">Glad</span>
+      <span class="right">to Meet You.</span>
+    </h1>
+
+    <script>
+      const flyTitle = document.getElementById("flyTitle");
+
+      function updateAnimation() {
+        const scrollY = window.scrollY;
+        const inThreshold = 100;
+        const outThreshold = 200;
+
+        if (scrollY < inThreshold) {
+          flyTitle.classList.add("active");
+        } else if (scrollY > outThreshold) {
+          flyTitle.classList.remove("active");
+        }
+      }
+
+      // 처음 열었을 때 자동으로 active 적용 (날아오게)
+      window.addEventListener("load", () => {
+        flyTitle.classList.add("active");
+      });
+
+      // 스크롤 이벤트
+      window.addEventListener("scroll", updateAnimation);
+    </script>
+  </body>
+</html>
