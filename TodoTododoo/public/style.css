@@ -1,0 +1,374 @@
+/* 전체 스타일 리셋 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+}
+
+:root {
+  --primary-color: #0064FF;
+  --secondary-color: #3182F6;
+  --background-color: #F9FAFB;
+  --text-color: #191F28;
+  --gray-100: #F2F4F6;
+  --gray-200: #E5E8EB;
+  --gray-300: #D1D6DB;
+  --gray-400: #B0B8C1;
+  --gray-500: #8B95A1;
+  --gray-600: #6B7684;
+  --gray-700: #4E5968;
+  --gray-800: #333D4B;
+  --gray-900: #191F28;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* 헤더 스타일 */
+header {
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* 버튼 스타일 */
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.primary-button {
+  background-color: var(--primary-color);
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+.secondary-button {
+  background-color: var(--gray-200);
+  color: var(--gray-700);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.secondary-button:hover {
+  background-color: var(--gray-300);
+}
+
+/* 폼 스타일 */
+form {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+.input-with-button {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-with-button input {
+  flex: 1;
+}
+
+.ssn-input-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.ssn-input-group input {
+  width: 120px;
+}
+
+.ssn-input-group .secondary-button {
+  white-space: nowrap;
+  margin-left: 0.5rem;
+}
+
+.ssn-divider {
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+.validation-message {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 100, 255, 0.1);
+}
+
+/* 할 일 리스트 스타일 */
+.todo-list {
+  margin-top: 2rem;
+}
+
+#todoList {
+  list-style: none;
+}
+
+.todo-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border: 1px solid var(--gray-200);
+}
+
+.todo-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.todo-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.todo-content {
+  flex: 1;
+}
+
+.todo-item h3 {
+  color: var(--gray-900);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.todo-item p {
+  color: var(--gray-600);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.todo-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.todo-actions button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.todo-actions .edit-button {
+  background-color: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.todo-actions .delete-button {
+  background-color: #FF4B4B;
+}
+
+.todo-actions .edit-button:hover {
+  background-color: var(--gray-300);
+}
+
+.todo-actions .delete-button:hover {
+  background-color: #FF6B6B;
+}
+
+/* 체크박스 스타일 */
+.todo-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.25rem;
+  cursor: pointer;
+}
+
+.todo-checkbox:checked + .todo-content h3,
+.todo-checkbox:checked + .todo-content p {
+  text-decoration: line-through;
+  color: var(--gray-500);
+}
+
+/* 수정 모드 스타일 */
+.edit-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 100, 255, 0.1);
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.save-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.cancel-button {
+  background-color: var(--gray-200);
+  color: var(--gray-700);
+}
+
+/* 웰컴 메시지 스타일 */
+.welcome {
+  color: var(--gray-700);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* 링크 스타일 */
+.links {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.links a:hover {
+  color: var(--secondary-color);
+}
+
+.divider {
+  margin: 0 0.5rem;
+  color: var(--gray-300);
+}
+
+/* 버튼 그룹 스타일 */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* 푸터 스타일 */
+.footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  text-align: center;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  form {
+    padding: 1.5rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer {
+    flex-direction: column;
+  }
+  
+  .input-with-button {
+    flex-direction: column;
+  }
+  
+  .ssn-input-group {
+    flex-wrap: wrap;
+  }
+  
+  .ssn-input-group input {
+    width: calc(50% - 0.5rem);
+  }
+}

@@ -41,14 +41,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const li = document.createElement("li");
       li.classList.add("todo-item");
 
+      const todoHeader = document.createElement("div");
+      todoHeader.classList.add("todo-header");
+
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
+      checkbox.classList.add("todo-checkbox");
       checkbox.checked = todo.done === 1;
       checkbox.addEventListener("change", () => {
         toggleDone(token, todo.id).then(loadTodos);
       });
 
-      const title = document.createElement("strong");
+      const todoContent = document.createElement("div");
+      todoContent.classList.add("todo-content");
+
+      const title = document.createElement("h3");
       title.textContent = todo.title;
 
       const content = document.createElement("p");
@@ -57,13 +64,20 @@ document.addEventListener("DOMContentLoaded", () => {
       if (todo.done === 1) {
         title.style.textDecoration = "line-through";
         content.style.textDecoration = "line-through";
+        title.style.color = "var(--gray-500)";
+        content.style.color = "var(--gray-500)";
       }
+
+      const todoActions = document.createElement("div");
+      todoActions.classList.add("todo-actions");
 
       const editBtn = document.createElement("button");
       editBtn.textContent = "수정";
+      editBtn.classList.add("edit-button");
 
       const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "삭제";
+      deleteBtn.classList.add("delete-button");
       deleteBtn.addEventListener("click", () => {
         if (!confirm("정말 삭제하시겠습니까?")) return;
         deleteTodo(token, todo.id).then(loadTodos);
@@ -73,23 +87,31 @@ document.addEventListener("DOMContentLoaded", () => {
       editBtn.addEventListener("click", () => {
         const titleInput = document.createElement("input");
         titleInput.value = todo.title;
+        titleInput.classList.add("edit-input");
 
-        const contentInput = document.createElement("input");
+        const contentInput = document.createElement("textarea");
         contentInput.value = todo.content;
+        contentInput.classList.add("edit-input");
+
+        const buttonGroup = document.createElement("div");
+        buttonGroup.classList.add("edit-buttons");
 
         const saveBtn = document.createElement("button");
         saveBtn.textContent = "저장";
+        saveBtn.classList.add("save-button");
 
         const cancelBtn = document.createElement("button");
         cancelBtn.textContent = "취소";
+        cancelBtn.classList.add("cancel-button");
 
         // li 초기화 후 수정모드 구성
         li.innerHTML = "";
         li.appendChild(checkbox);
         li.appendChild(titleInput);
         li.appendChild(contentInput);
-        li.appendChild(saveBtn);
-        li.appendChild(cancelBtn);
+        buttonGroup.appendChild(saveBtn);
+        buttonGroup.appendChild(cancelBtn);
+        li.appendChild(buttonGroup);
 
         saveBtn.addEventListener("click", async () => {
           const newTitle = titleInput.value.trim();
@@ -110,11 +132,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // 기본 화면에 요소 추가
-      li.appendChild(checkbox);
-      li.appendChild(title);
-      li.appendChild(content);
-      li.appendChild(editBtn);
-      li.appendChild(deleteBtn);
+      todoContent.appendChild(title);
+      todoContent.appendChild(content);
+      todoHeader.appendChild(checkbox);
+      todoHeader.appendChild(todoContent);
+      todoActions.appendChild(editBtn);
+      todoActions.appendChild(deleteBtn);
+      li.appendChild(todoHeader);
+      li.appendChild(todoActions);
 
       todoList.appendChild(li);
     });

@@ -1,174 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>회원가입</title>
+    <title>회원가입 - Todo Todo do</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
   </head>
-  <body data-script="signup">
-    <h2>회원가입</h2>
-    <form id="signupForm">
-      <div>
-        <label for="userid">아이디</label>
-        <input
-          type="text"
-          id="userid"
-          name="userid"
-          required
-          placeholder="아이디를 입력하세요"
-        />
-        <button id="checkIdBtn">중복확인</button>
-      </div>
+  <body>
+    <header class="container">
+      <h1>회원가입</h1>
+    </header>
 
-      <div>
-        <label for="userpw">비밀번호</label>
-        <input
-          type="password"
-          name="userpw"
-          id="userpw"
-          required
-          placeholder="비밀번호를 입력하세요"
-        />
-        <input
-          type="password"
-          id="userpwConfirm"
-          placeholder="비밀번호 확인"
-          required
-        />
-        <span id="pwMatchMsg"></span>
-      </div>
+    <main class="container">
+      <form id="signupForm" class="signup-form">
+        <div class="form-group">
+          <label for="userid">아이디</label>
+          <div class="input-with-button">
+            <input
+              type="text"
+              id="userid"
+              name="userid"
+              required
+              placeholder="아이디를 입력하세요"
+            />
+            <button type="button" id="checkIdBtn" class="secondary-button">
+              중복확인
+            </button>
+          </div>
+        </div>
 
-      <div>
-        <label for="name">이름</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          placeholder="이름을 입력하세요"
-        />
-      </div>
+        <div class="form-group">
+          <label for="userpw">비밀번호</label>
+          <input
+            type="password"
+            name="userpw"
+            id="userpw"
+            required
+            placeholder="비밀번호를 입력하세요"
+          />
+          <input
+            type="password"
+            id="userpwConfirm"
+            placeholder="비밀번호 확인"
+            required
+          />
+          <span id="pwMatchMsg" class="validation-message"></span>
+        </div>
 
-      <div>
-        <label for="hp">전화번호</label>
-        <input
-          type="text"
-          id="hp"
-          name="hp"
-          required
-          placeholder="ex)010-1234-1234"
-        />
-      </div>
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="이름을 입력하세요"
+          />
+        </div>
 
-      <div>
-        <label for="email">이메일</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          placeholder="이메일을 입력하세요"
-        />
-      </div>
+        <div class="form-group">
+          <label for="hp">전화번호</label>
+          <input
+            type="text"
+            id="hp"
+            name="hp"
+            required
+            placeholder="ex ) 010-1234-1234"
+          />
+        </div>
 
-      <div>
-        <label for="ssn1">주민등록번호</label>
-        <input type="text" id="ssn1" name="ssn1" maxlength="6" required /> -
-        <input type="text" id="ssn2" name="ssn2" maxlength="7" required />
-        <button type="button" id="checkSsnBtn">유효성검사</button>
-      </div>
+        <div class="form-group">
+          <label for="email">이메일</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="이메일을 입력하세요"
+          />
+        </div>
 
-      <div>
-        <label for="zipcode">우편번호</label>
-        <input
-          type="text"
-          id="sample6_postcode"
-          name="zipcode"
-          placeholder="우편번호"
-          readonly
-        />
-        <input
-          type="button"
-          onclick="sample6_execDaumPostcode()"
-          value="우편번호 찾기"
-        /><br />
-      </div>
+        <div class="form-group">
+          <label for="ssn1">주민등록번호</label>
+          <div class="ssn-input-group">
+            <input type="text" id="ssn1" name="ssn1" maxlength="6" required />
+            <span class="ssn-divider">-</span>
+            <input
+              type="password"
+              id="ssn2"
+              name="ssn2"
+              maxlength="7"
+              required
+            />
+            <button type="button" id="checkSsnBtn" class="secondary-button">
+              유효성검사
+            </button>
+          </div>
+        </div>
 
-      <div>
-        <input type="text" id="sample6_address" placeholder="주소" /><br />
-        <input type="text" id="sample6_detailAddress" placeholder="상세주소" />
-        <input type="text" id="sample6_extraAddress" placeholder="참고항목" />
-      </div>
+        <div class="form-group">
+          <label for="zipcode">우편번호</label>
+          <div class="input-with-button">
+            <input
+              type="text"
+              id="sample6_postcode"
+              name="zipcode"
+              placeholder="우편번호"
+              readonly
+            />
+            <button
+              type="button"
+              onclick="sample6_execDaumPostcode()"
+              class="secondary-button"
+            >
+              우편번호 찾기
+            </button>
+          </div>
+        </div>
 
-      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-      <script>
-        function sample6_execDaumPostcode() {
-          new daum.Postcode({
-            oncomplete: function (data) {
-              // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+        <div class="form-group">
+          <input type="text" id="sample6_address" placeholder="주소" />
+          <input
+            type="text"
+            id="sample6_detailAddress"
+            placeholder="상세주소"
+          />
+          <input type="text" id="sample6_extraAddress" placeholder="참고항목" />
+        </div>
 
-              // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-              // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-              var addr = ""; // 주소 변수
-              var extraAddr = ""; // 참고항목 변수
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script>
+          function sample6_execDaumPostcode() {
+            new daum.Postcode({
+              oncomplete: function (data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-              //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-              if (data.userSelectedType === "R") {
-                // 사용자가 도로명 주소를 선택했을 경우
-                addr = data.roadAddress;
-              } else {
-                // 사용자가 지번 주소를 선택했을 경우(J)
-                addr = data.jibunAddress;
-              }
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ""; // 주소 변수
+                var extraAddr = ""; // 참고항목 변수
 
-              // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-              if (data.userSelectedType === "R") {
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
-                  extraAddr += data.bname;
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === "R") {
+                  // 사용자가 도로명 주소를 선택했을 경우
+                  addr = data.roadAddress;
+                } else {
+                  // 사용자가 지번 주소를 선택했을 경우(J)
+                  addr = data.jibunAddress;
                 }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if (data.buildingName !== "" && data.apartment === "Y") {
-                  extraAddr +=
-                    extraAddr !== ""
-                      ? ", " + data.buildingName
-                      : data.buildingName;
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if (data.userSelectedType === "R") {
+                  // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                  // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                  if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+                    extraAddr += data.bname;
+                  }
+                  // 건물명이 있고, 공동주택일 경우 추가한다.
+                  if (data.buildingName !== "" && data.apartment === "Y") {
+                    extraAddr +=
+                      extraAddr !== ""
+                        ? ", " + data.buildingName
+                        : data.buildingName;
+                  }
+                  // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                  if (extraAddr !== "") {
+                    extraAddr = " (" + extraAddr + ")";
+                  }
+                  // 조합된 참고항목을 해당 필드에 넣는다.
+                  document.getElementById("sample6_extraAddress").value =
+                    extraAddr;
+                } else {
+                  document.getElementById("sample6_extraAddress").value = "";
                 }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if (extraAddr !== "") {
-                  extraAddr = " (" + extraAddr + ")";
-                }
-                // 조합된 참고항목을 해당 필드에 넣는다.
-                document.getElementById("sample6_extraAddress").value =
-                  extraAddr;
-              } else {
-                document.getElementById("sample6_extraAddress").value = "";
-              }
 
-              // 우편번호와 주소 정보를 해당 필드에 넣는다.
-              document.getElementById("sample6_postcode").value = data.zonecode;
-              document.getElementById("sample6_address").value = addr;
-              // 커서를 상세주소 필드로 이동한다.
-              document.getElementById("sample6_detailAddress").focus();
-            },
-          }).open();
-        }
-      </script>
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample6_postcode").value =
+                  data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+              },
+            }).open();
+          }
+        </script>
 
-      <!-- 성별은 js에서 자동 추출 -->
-      <input type="hidden" id="gender" name="gender" />
+        <input type="hidden" id="gender" name="gender" />
 
-      <button type="submit">회원가입</button>
-    </form>
+        <div class="button-group">
+          <button type="submit" class="primary-button">회원가입</button>
+        </div>
+      </form>
 
-    <!-- 이미 아이디가 있으신가요? -->
-    <div style="position: fixed; bottom: 20px; right: 20px">
-      <button id="goLoginBtn" onclick="location.href='/login.html'">
-        이미 아이디가 있으신가요?
-      </button>
-    </div>
+      <div class="links">
+        <a href="/login">이미 아이디가 있으신가요?</a>
+      </div>
+    </main>
 
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="module" src="/js/signup.js"></script>
   </body>
 </html>

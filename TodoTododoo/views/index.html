@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hit you with that Todo Todo do</title>
+    <title>Todo Todo do</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   </head>
-  <body data-script="index">
-    <h1>나의 할 일을 관리하고 갓생을 살아보세요!😎</h1>
-    <button id="goLoginBtn">로그인</button>
-    <button id="goSignupBtn">회원가입</button>
+  <body>
+    <header class="container">
+      <h1>Todo Todo do</h1>
+      <div id="welcomeMsg" class="welcome"></div>
+    </header>
+
+    <main class="container">
+      <div class="button-group">
+        <button id="goLoginBtn">로그인</button>
+        <button id="goSignupBtn">회원가입</button>
+        <button id="goMyTodosBtn" style="display: none">나의 할 일 보러가기</button>
+      </div>
+    </main>
+
     <script type="module" src="/js/index.js"></script>
   </body>
 </html>
