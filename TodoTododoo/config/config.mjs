@@ -16,7 +16,7 @@ export const config = {
   },
 
   host: {
-    port: process.env.PORT || 5000, // 서버가 실행될 포트번호, 기본값 5000
+    port: process.env.PORT || 5500, // 서버가 실행될 포트번호, 기본값 5000
   },
 };
 

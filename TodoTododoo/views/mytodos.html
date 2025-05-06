@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나의 할 일</title>
+  </head>
+  <body data-script="mytodos">
+    <h2 id="welcomeMsg">나의 할 일</h2>
+    <!-- 할 일 등록 -->
+    <form id="todoForm">
+      <input
+        type="text"
+        id="title"
+        name="title"
+        placeholder="제목을 입력해주세요"
+        required
+      />
+      <input name="content" id="content" placeholder="내용을 입력해주세요" />
+      <button type="submit">등록</button>
+    </form>
+    <!-- 할 일 리스트 출력 -->
+    <ul id="todoList">
+      <!-- js로 동적 렌더링 -->
+    </ul>
+
+    <!-- 로그아웃 또는 홈 이동 버튼 -->
+    <div style="position: fixed; bottom: 20px; right: 20px">
+      <button onclick="location.href='/index.html'">홈으로</button>
+      <button onclick="logout()">로그아웃</button>
+    </div>
+
+    <script type="module" src="/js/mytodos.js"></script>
+  </body>
+</html>
